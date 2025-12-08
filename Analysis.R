@@ -5,6 +5,25 @@ library(ggplot2)
 library(purrr)
 library(tidyr)
 
+make_plot <- function(country_level_data,
+                      commune_level_data,
+                      commune){
+  
+  filtered_data <- commune_level_data %>%
+    filter(locality == commune)
+  
+  data_to_plot <- bind_rows(
+    country_level_data,
+    filtered_data
+  )
+  
+  ggplot(data_to_plot) +
+    geom_line(aes(y = pl_m2,
+                  x = year,
+                  group = locality,
+                  colour = locality))
+}
+
 #Let's load the datasets:
 
 commune_level_data <- read.csv("datasets/commune_level_data.csv")
