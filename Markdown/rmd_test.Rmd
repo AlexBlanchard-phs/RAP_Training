@@ -1,0 +1,15 @@
+---
+output: html_document
+---
+
+# Document title
+
+## Section title
+
+### Subsection title
+
+This is **bold** text. This is *text in italics*. This text is ***bold and italics***. 
+
+[This text is underlined]{.underline}
+
+My favourite programming language for statistics is ~~SAS~~ R.

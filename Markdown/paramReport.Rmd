@@ -1,0 +1,51 @@
+---
+title: "Report for column `r params$var` of dataset `r params$dataset`"
+output: html_document
+date: "2023-01-27"
+params:
+  dataset: iris
+  var: "Sepal.Length"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Frequency table for `r params$var`
+
+```{r, echo = F}
+create_table <- function(dataset, var){
+
+  dataset <- get(dataset)
+
+  table(dataset[var]) |>
+    knitr::kable()
+}
+```
+
+
+The table below is for variable `r params$var` of 
+dataset `r params$dataset`.
+
+```{r}
+create_table(params$dataset, params$var)
+```
+
+```{r, eval = F, echo = F}
+columns <- colnames(iris)
+
+lapply(columns,
+  (\(x)rmarkdown::render(
+                    input = "paramReport.Rmd",
+                    output_file = paste0(
+                      "paramReport_", x, ".html"
+                    ),
+                    params = list(
+                      dataset = "iris",
+                      var = x
+                    )
+                  )
+  )
+)
+```

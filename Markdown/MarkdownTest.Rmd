@@ -1,0 +1,43 @@
+---
+title: "Document title"
+output: html_document
+date: "2023-01-28"
+---
+
+# R code chunks
+
+This below is an R code chunk:
+
+```{r}
+data(mtcars)
+
+plot(mtcars)
+```
+
+
+The code chunk above will appear in the final output. 
+The code chunk below will be hidden:
+
+```{r, echo = FALSE}
+data(iris)
+
+plot(iris)
+```
+
+
+This next code chunk will not be evaluated:
+
+```{r, eval = FALSE}
+data(titanic)
+
+str(titanic)
+```
+
+
+The last one below runs, but code and output from the code is 
+not shown in the final document. This is useful for loading 
+libraries and hiding startup messages:
+
+```{r, include = FALSE}
+library(dplyr)
+```
